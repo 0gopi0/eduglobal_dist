@@ -5,9 +5,9 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 
-  // Hostinger expects build output at `<app root>/dist`. Express serves it
-  // from there in production (see server/src/config/dotenv.ts).
-  build: { outDir: '../dist', emptyOutDir: true },
+  // Static deploy on Hostinger: the build lands in `<app root>/dist`, which
+  // Hostinger serves directly (public/.htaccess handles SPA routing).
+  build: { outDir: 'dist', emptyOutDir: true },
 
   server: {
     port: 5173,
