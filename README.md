@@ -1,1 +1,0 @@
-# eduglobal_dist
