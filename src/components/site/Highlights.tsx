@@ -2,22 +2,26 @@ import { HIGHLIGHTS } from '../../content/site'
 
 /**
  * The scrolling band of what EduGlobal does: one row of icon chips. The track
- * holds the six highlights twice over, so sliding it by half its width lands
- * exactly where it started and the loop never shows a seam; the second copy
- * is hidden from screen readers. Hovering pauses the row, and it fades out
+ * holds the six highlights four times over, so sliding it by half its width
+ * lands exactly where it started and the loop never shows a seam. Two copies
+ * would leave a gap at the right edge on wide screens before the loop resets,
+ * as one copy is narrower than the band. Only the first copy is read by
+ * screen readers. Hovering pauses the row, and it fades out
  * towards the band's edges so phrases drift in rather than being cut.
- * Reduced-motion visitors see the row standing still.
+ * Reduced-motion visitors see the row standing still. It opts out of the
+ * site scroll reveal, so the row is already moving when it comes into view.
  */
 export function Highlights() {
   return (
     <section
       aria-label="What we do"
+      data-no-reveal
       className="group relative overflow-hidden border-y border-line bg-sky py-5 sm:py-6"
     >
       <div className="relative [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="flex w-max motion-safe:animate-marquee group-hover:[animation-play-state:paused]">
-          {[0, 1].map((copy) => (
-            <ul key={copy} aria-hidden={copy === 1} className="flex shrink-0 items-center">
+          {[0, 1, 2, 3].map((copy) => (
+            <ul key={copy} aria-hidden={copy > 0} className="flex shrink-0 items-center">
               {HIGHLIGHTS.map(({ label, icon: Icon }) => (
                 <li key={label} className="flex items-center">
                   <span className="flex items-center gap-2.5 px-5">

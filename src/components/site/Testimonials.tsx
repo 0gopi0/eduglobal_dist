@@ -3,7 +3,7 @@ import { useId, useRef, useState, type KeyboardEvent, type PointerEvent } from '
 import { PILLARS, TESTIMONIALS } from '../../content/site'
 import { cn } from '../../lib/cn'
 import { nextTabIndex, prefersReducedMotion } from './hooks'
-import { Section } from './ui'
+import { Section, StatementHeading } from './ui'
 
 /** How long each quote stays up before the next one takes over. */
 const HOLD_MS = 7000
@@ -250,17 +250,11 @@ function Carousel() {
 export function Testimonials() {
   return (
     <Section id="voices" tone="mist">
-      <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-        <div>
-          <p className="type-label text-leaf">Partner voices</p>
-          <h2 className="type-heading mt-3 max-w-[22ch] text-balance">
-            In their words: what changes when schools partner with us.
-          </h2>
-        </div>
-        <p className="max-w-[26rem] text-body max-sm:hidden lg:pb-1">
-          Principals, trustees and teachers on the difference a single operating rhythm makes.
-        </p>
-      </header>
+      <StatementHeading
+        label="Partner voices"
+        title="In their words: what changes when schools partner with us."
+        lede="Principals, trustees and teachers on the difference a single operating rhythm makes."
+      />
       <div className="mt-10">
         <Carousel />
       </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { cn } from '../../lib/cn'
 import { formatIndian, formatRupees, projectCampus } from '../../lib/diagnostic'
 import { useInView } from './hooks'
-import { Section, buttonClass } from './ui'
+import { Section, StatementHeading, buttonClass } from './ui'
 
 const SEATS = { min: 100, max: 3_000, step: 10, initial: 800 }
 const ENROLLED = { min: 10, step: 10, initial: 420 }
@@ -447,16 +447,11 @@ export function CampusCalculator() {
 export function CalculatorSection() {
   return (
     <Section id="diagnostic" tone="mist">
-      <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-        <div>
-          <p className="type-label text-leaf">Institutional diagnostic</p>
-          <h2 className="type-heading mt-3 text-balance">Run the numbers on your own campus.</h2>
-        </div>
-        <p className="max-w-[26rem] text-body max-sm:hidden lg:pb-1">
-          Move the sliders. See what a single EduGlobal admissions cycle could mean for your seats
-          and your bottom line.
-        </p>
-      </header>
+      <StatementHeading
+        label="Institutional diagnostic"
+        title="Run the numbers on your own campus."
+        lede="Move the sliders. See what a single EduGlobal admissions cycle could mean for your seats and your bottom line."
+      />
       <div className="mt-10">
         <CampusCalculator />
       </div>

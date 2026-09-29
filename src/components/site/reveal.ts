@@ -11,7 +11,8 @@ import { prefersReducedMotion } from './hooks'
  * three or more items reveals its items one after another instead of as one
  * block. Heroes (anything holding a `HeroLine`) already run their own load
  * sequence and are left alone, as are decorative and absolutely positioned
- * layers.
+ * layers. A root marked `data-no-reveal` is skipped too: a moving band such as
+ * the highlights marquee should already be running when it scrolls in.
  *
  * The styles live in `index.css` under `[data-reveal]`. The attribute is
  * removed once an element has settled, so no transform or opacity lingers to
@@ -126,7 +127,12 @@ export function useSiteReveal(containerRef: RefObject<HTMLElement | null>, route
       const pageLoad = performance.now() - loadedAt < PAGE_LOAD_MS
 
       for (const root of container.querySelectorAll(ROOTS)) {
-        if (!isTopLevel(root) || root.querySelector('[class*="animate-rise"]')) continue
+        if (
+          !isTopLevel(root) ||
+          root.hasAttribute('data-no-reveal') ||
+          root.querySelector('[class*="animate-rise"]')
+        )
+          continue
 
         for (const [el, index] of collectTargets(root)) {
           if (seen.has(el) || !(el instanceof HTMLElement)) continue

@@ -1,5 +1,5 @@
 export function formatDate(iso: string | null): string {
-  if (!iso) return '—'
+  if (!iso) return 'Not set'
 
   return new Date(iso).toLocaleDateString(undefined, {
     year: 'numeric',
@@ -9,7 +9,7 @@ export function formatDate(iso: string | null): string {
 }
 
 export function formatDateTime(iso: string | null): string {
-  if (!iso) return '—'
+  if (!iso) return 'Not set'
 
   return new Date(iso).toLocaleString(undefined, {
     year: 'numeric',

@@ -218,7 +218,7 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
 
       <div className="border-t border-white/10">
         <div className="container-site flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-6 text-[0.8125rem] text-white/45">
-          <p>© {new Date().getFullYear()} EduGlobal Innovation Private Limited — Redefining Education</p>
+          <p>© {new Date().getFullYear()} EduGlobal Innovation Private Limited. Redefining Education.</p>
           <p>
             Designed by{' '}
             <a

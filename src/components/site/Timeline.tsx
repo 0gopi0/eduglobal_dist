@@ -25,24 +25,24 @@ export function Timeline({ milestones }: { milestones: readonly Milestone[] }) {
               <span
                 aria-hidden="true"
                 className={cn(
-                  'absolute top-7 -bottom-4 left-[11px] border-l-2 lg:top-[11px] lg:bottom-auto lg:left-7 lg:w-[calc(100%-0.75rem)] lg:border-t-2 lg:border-l-0',
+                  'absolute top-6 -bottom-4 left-[11px] border-l-2 lg:top-[11px] lg:bottom-auto lg:left-11 lg:w-[calc(100%-0.5rem)] lg:border-t-2 lg:border-l-0',
                   next.planned ? 'border-dashed border-leaf/45' : 'border-leaf',
                 )}
               />
             ) : null}
             <span
               aria-hidden="true"
-              className="absolute top-0 left-0 grid size-6 place-items-center rounded-full bg-paper ring-2 ring-leaf ring-inset lg:relative"
+              className="absolute top-0 left-0 grid size-6 place-items-center rounded-full bg-paper ring-2 ring-leaf ring-inset lg:relative lg:ml-5"
             >
               {milestone.planned ? null : <span className="size-2.5 rounded-full bg-leaf" />}
             </span>
 
             <div
               className={cn(
-                'rounded-2xl p-5 lg:mt-5 lg:h-[calc(100%-2.75rem)]',
+                'rounded-2xl p-5 transition-shadow duration-300 hover:shadow-[0_0_0_1px_rgb(0_96_192/0.4),0_0_24px_-2px_rgb(0_96_192/0.45)] lg:mt-5 lg:h-[calc(100%-2.75rem)]',
                 milestone.planned
-                  ? 'border-2 border-dashed border-leaf/35 bg-paper/60'
-                  : 'bg-paper shadow-[0_14px_30px_-24px_rgb(0_16_48/0.4)] ring-1 ring-line',
+                  ? 'border-2 border-dashed border-leaf/35 bg-paper/60 hover:border-leaf/70'
+                  : 'bg-paper shadow-[0_14px_30px_-24px_rgb(0_16_48/0.4)] ring-1 ring-line hover:ring-leaf',
               )}
             >
               <div className="flex items-center justify-between gap-3">

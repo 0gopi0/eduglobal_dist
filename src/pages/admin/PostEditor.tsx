@@ -289,7 +289,7 @@ export function PostEditor() {
             <Field
               label="Excerpt"
               htmlFor="excerpt"
-              hint={`${form.excerpt.length}/${EXCERPT_LIMIT} characters — shown on the blog listing.`}
+              hint={`${form.excerpt.length}/${EXCERPT_LIMIT} characters, shown on the blog listing.`}
               error={fieldErrors.excerpt}
             >
               <Textarea

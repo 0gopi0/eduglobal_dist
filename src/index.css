@@ -62,8 +62,9 @@
   --animate-line-rise: line-rise 14s linear infinite;
   --animate-gloss-drift: gloss-drift 16s ease-in-out infinite alternate;
   --animate-wave-drift: wave-drift 24s linear infinite;
-  /* The highlights band reuses the same one-tile slide. */
-  --animate-marquee: wave-drift 48s linear infinite;
+  /* The highlights band reuses the same one-tile slide. Its track holds four
+     copies, so each loop covers two of them. */
+  --animate-marquee: wave-drift 36s linear infinite;
   /* The closing invitation's underline draws itself once, the first time the
      line scrolls into view. `pathLength` normalises the stroke to 100 units,
      so the dash travels the whole curve however the headline wraps. */

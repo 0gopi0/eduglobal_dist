@@ -9,7 +9,7 @@ import { StatsBand } from '../../components/site/StatsBand'
 import { Tracks } from '../../components/site/Tracks'
 import { Highlights } from '../../components/site/Highlights'
 import { Testimonials } from '../../components/site/Testimonials'
-import { HeroLine, Section, buttonClass } from '../../components/site/ui'
+import { HeroLine, Section, StatementHeading } from '../../components/site/ui'
 import { PILLARS } from '../../content/site'
 
 /** Phones (below Tailwind's `sm`) get the portrait cut of the hero film. */
@@ -68,6 +68,38 @@ function HeroVideo() {
   )
 }
 
+/** A hero call to action: a see-through pill with a navy border and a light
+ * blue knob. The knob pulses softly at rest; on hover or focus navy floods out
+ * from behind it across the pill, the label turns white and the arrow tips up
+ * and away. */
+function HeroCta({ to, label, className = '' }: { to: string; label: string; className?: string }) {
+  return (
+    <Link
+      to={to}
+      className={`group relative isolate inline-flex h-14 items-center gap-4 overflow-hidden rounded-full bg-paper/40 pr-2 pl-7 max-sm:bg-transparent max-sm:backdrop-blur-none text-[1.0625rem] font-semibold whitespace-nowrap text-board ring-2 ring-board backdrop-blur-sm transition-[color,transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ring-inset hover:-translate-y-0.5 hover:text-white hover:shadow-[0_20px_36px_-16px_rgb(0_16_48/0.6)] focus-visible:text-white active:translate-y-0 active:scale-[0.98] ${className}`}
+    >
+      {/* The flood: a navy disc behind the knob that scales up to cover the
+          pill. */}
+      <span
+        aria-hidden="true"
+        className="absolute top-1/2 right-2 -z-10 size-10 -translate-y-1/2 rounded-full bg-board transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[12] group-focus-visible:scale-[12]"
+      />
+      {label}
+      <span className="relative grid size-10 shrink-0 place-items-center rounded-full bg-linear-to-br from-[#8fd3f8] to-[#55bbf3] text-ink">
+        {/* A slow halo drawing the eye at rest. */}
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full ring-2 ring-[#55bbf3]/70 group-hover:hidden motion-safe:animate-ping motion-safe:[animation-duration:2.4s]"
+        />
+        <ArrowRight
+          aria-hidden="true"
+          className="size-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-rotate-45"
+        />
+      </span>
+    </Link>
+  )
+}
+
 export function Home() {
   usePageTitle()
 
@@ -107,47 +139,8 @@ export function Home() {
                 ))}
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
-                {/* The primary action: a see-through pill with a navy border
-                    and a light blue knob. The knob pulses softly at rest; on hover
-                    or focus navy floods out from behind it across the pill,
-                    the label turns white and the arrow tips up and away. */}
-                <Link
-                  to="/contact"
-                  className="group relative isolate inline-flex h-14 items-center gap-4 overflow-hidden rounded-full bg-paper/40 pr-2 pl-7 max-sm:bg-transparent max-sm:backdrop-blur-none text-[1.0625rem] font-semibold whitespace-nowrap text-board ring-2 ring-board backdrop-blur-sm transition-[color,transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ring-inset hover:-translate-y-0.5 hover:text-white hover:shadow-[0_20px_36px_-16px_rgb(0_16_48/0.6)] focus-visible:text-white active:translate-y-0 active:scale-[0.98]"
-                >
-                  {/* The flood: a navy disc behind the knob that scales up to
-                      cover the pill. */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-1/2 right-2 -z-10 size-10 -translate-y-1/2 rounded-full bg-board transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[12] group-focus-visible:scale-[12]"
-                  />
-                  Partner with us
-                  <span className="relative grid size-10 shrink-0 place-items-center rounded-full bg-linear-to-br from-[#8fd3f8] to-[#55bbf3] text-ink">
-                    {/* A slow halo drawing the eye at rest. */}
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-0 rounded-full ring-2 ring-[#55bbf3]/70 group-hover:hidden motion-safe:animate-ping motion-safe:[animation-duration:2.4s]"
-                    />
-                    <ArrowRight
-                      aria-hidden="true"
-                      className="size-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-rotate-45"
-                    />
-                  </span>
-                </Link>
-                <Link
-                  to="/#ecosystem"
-                  className={buttonClass(
-                    'ctaOutline',
-                    'group spark-border relative max-sm:hidden [--spark-color:var(--color-leaf)] [--spark-delay:-1.8s] hover:[--spark-color:var(--color-pencil-bright)]',
-                    'lg',
-                  )}
-                >
-                  Explore the model
-                  <ArrowRight
-                    aria-hidden="true"
-                    className="size-[1.15rem] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
-                  />
-                </Link>
+                <HeroCta to="/contact" label="Partner with us" />
+                <HeroCta to="/franchise" label="Franchise model" className="max-sm:hidden" />
               </div>
             </div>
           </div>
@@ -162,19 +155,11 @@ export function Home() {
           up into that space, so it is layered above the stats band's ground
           (z-10, later in the page) to keep its label visible. */}
       <Section id="ecosystem" tone="mist" className="relative z-10 pt-0 max-sm:-mt-8 sm:pt-6">
-        {/* Title and lede share one row, so the card starts close under them. */}
-        <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          <div>
-            <p className="type-label text-leaf">The Manifesto</p>
-            <h2 className="type-heading mt-3 max-w-[24ch] text-balance">
-              Four chapters. One operating system for education.
-            </h2>
-          </div>
-          <p className="max-w-[26rem] text-body max-sm:hidden lg:pb-1">
-            Every EduGlobal partnership runs on the same four pillars — each one engineered,
-            measured, and accountable.
-          </p>
-        </header>
+        <StatementHeading
+          label="The Manifesto"
+          title="Four chapters. One operating system for education."
+          lede="Every EduGlobal partnership runs on the same four pillars, each one engineered, measured, and accountable."
+        />
         <div className="mt-10">
           <PillarExplorer />
         </div>

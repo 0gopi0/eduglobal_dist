@@ -11,7 +11,7 @@ const FAQS: readonly Faq[] = [
   {
     question: 'What does a franchise partnership with EduGlobal actually include?',
     answer:
-      'A complete operating system: licensed curriculum, campus design guidelines, compliance and affiliation support, staff hiring and training, admissions systems, and ongoing 360° operational support — all under a performance-linked investment structure.',
+      'A complete operating system: licensed curriculum, campus design guidelines, compliance and affiliation support, staff hiring and training, admissions systems, and ongoing 360° operational support, all under a performance-linked investment structure.',
   },
   {
     question: 'We already run a school. Can you work with existing institutions?',
@@ -21,7 +21,7 @@ const FAQS: readonly Faq[] = [
   {
     question: 'How quickly can an admissions turnaround show results?',
     answer:
-      'Partner schools typically see measurable funnel improvement within the first admission cycle — median first-year enrollment uplift across the network is around 34%, with full seat-fill trajectories by year two.',
+      'Partner schools typically see measurable funnel improvement within the first admission cycle. Median first-year enrollment uplift across the network is around 34%, with full seat-fill trajectories by year two.',
   },
   {
     question: 'What regions do you currently operate in?',
@@ -77,7 +77,7 @@ export function Contact() {
                   {/* The page's top-level heading: with no banner above it,
                       this is the first thing the page says. */}
                   <h1 className="mt-3 max-w-[22ch] text-[clamp(1.75rem,1.3rem+1.4vw,2.5rem)] leading-[1.05] font-bold tracking-[-0.02em] text-balance">
-                    Tell us where you are — and where you want to be.
+                    Tell us where you are, and where you want to be.
                   </h1>
                 </div>
                 <p className="inline-flex shrink-0 items-center gap-2 rounded-full bg-paper px-3.5 py-1.5 text-[0.8125rem] font-semibold text-leaf shadow-[0_10px_22px_-14px_rgb(0_16_48/0.45)] ring-1 ring-line ring-inset">

@@ -1,6 +1,7 @@
 import { ArrowRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { TRACKS, photoProps } from '../../content/site'
+import { StatementHeading } from './ui'
 
 /**
  * Two ways in: one for investors and trusts, one for school leaders. Each is
@@ -11,18 +12,11 @@ export function Tracks() {
   return (
     <section className="bg-paper py-12">
       <div className="container-site">
-        <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          <div>
-            <p className="type-label text-leaf">Two ways in</p>
-            <h2 className="type-heading mt-3 max-w-[22ch] text-balance">
-              Where would you like to start?
-            </h2>
-          </div>
-          <p className="max-w-[26rem] text-body max-sm:hidden lg:pb-1">
-            Whether you are building a network of schools or strengthening the one you lead, there
-            is a path designed for you.
-          </p>
-        </header>
+        <StatementHeading
+          label="Two ways in"
+          title="Where would you like to start?"
+          lede="Whether you are building a network of schools or strengthening the one you lead, there is a path designed for you."
+        />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {TRACKS.map((track) => (

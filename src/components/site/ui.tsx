@@ -211,6 +211,39 @@ export function SectionHeading({
   )
 }
 
+/**
+ * The Home page's band opening: a label led by a short rule, a heading across
+ * the full width, and the lede under a hairline (left off on phones). From
+ * `lg` up the heading stays on one line, sized from the content width. The
+ * divisor, 26, fits the longest title ("In their words: …", about 24.9em in
+ * Lato bold), and every band shares it so the headings match. Keep new titles
+ * within that length, or they will run past the container.
+ */
+export function StatementHeading({
+  label,
+  title,
+  lede,
+}: {
+  label: string
+  title: ReactNode
+  lede: ReactNode
+}) {
+  return (
+    <header>
+      <p className="type-label flex items-center gap-3 text-leaf">
+        <span aria-hidden="true" className="h-0.5 w-8 rounded-full bg-leaf" />
+        {label}
+      </p>
+      <h2 className="type-heading mt-4 text-balance lg:text-[length:min(calc((100vw-4rem)/26),2.75rem)] lg:whitespace-nowrap">
+        {title}
+      </h2>
+      <div className="mt-6 border-t border-line pt-6 max-sm:hidden">
+        <p className="text-body">{lede}</p>
+      </div>
+    </header>
+  )
+}
+
 /** One line of a hero headline, rising from behind a mask on load. */
 export function HeroLine({ delay, children }: { delay: number; children: ReactNode }) {
   return (

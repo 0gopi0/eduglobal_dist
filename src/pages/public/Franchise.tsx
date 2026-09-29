@@ -14,13 +14,13 @@ import { useRef, type ReactNode } from 'react'
 import { EnquiryForm } from '../../components/site/EnquiryForm'
 import { useInView, usePageTitle } from '../../components/site/hooks'
 import { PhotoBanner } from '../../components/site/PhotoBanner'
-import { Section, SectionHeading } from '../../components/site/ui'
+import { Section, StatementHeading } from '../../components/site/ui'
 
 const TURNKEY = [
   {
     icon: BookOpen,
     title: 'Curriculum Licence',
-    body: 'The complete EduGlobal academic framework — lesson architecture, assessments, and teacher guides.',
+    body: 'The complete EduGlobal academic framework: lesson architecture, assessments, and teacher guides.',
   },
   {
     icon: Building,
@@ -190,8 +190,8 @@ export function Franchise() {
         lede={
           <>
             <strong className="font-semibold text-ink">Strategic investment partnerships</strong>{' '}
-            that bring a proven educational operating system — curriculum, campus, compliance, and
-            community — to your region.
+            that bring a proven educational operating system (curriculum, campus, compliance, and
+            community) to your region.
           </>
         }
         facts={[
@@ -205,7 +205,7 @@ export function Franchise() {
       />
 
       <Section id="turnkey" tone="mist">
-        <SectionHeading
+        <StatementHeading
           label="The turnkey school system"
           title="Everything a campus needs, in one partnership."
           lede="Four pieces, one partner: what it takes to open and run a campus to the EduGlobal standard."
@@ -225,7 +225,7 @@ export function Franchise() {
               Transparent projections, aligned incentives.
             </h2>
             <p className="mt-5 max-w-[34rem] text-body max-sm:hidden">
-              We invest alongside our partners. Our returns are tied to your campus performance — so
+              We invest alongside our partners. Our returns are tied to your campus performance, so
               we only win when the school wins.
             </p>
           </div>
@@ -236,7 +236,7 @@ export function Franchise() {
       </Section>
 
       <Section id="facilities">
-        <SectionHeading
+        <StatementHeading
           label="Facility modernization"
           title="Campuses parents remember from the first visit."
           lede="Labs, classrooms and spaces specified to board norms, then audited so they stay that way."
@@ -249,7 +249,7 @@ export function Franchise() {
       </Section>
 
       <Section id="enquiry" tone="mist">
-        <SectionHeading
+        <StatementHeading
           label="Partner qualification"
           title="Four steps from interest to inauguration."
           lede="Tell us about your region and your plans. Here is what happens after you send the form."

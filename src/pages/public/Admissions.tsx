@@ -12,7 +12,7 @@ import { Flywheel, type Force } from '../../components/site/Flywheel'
 import { usePageTitle } from '../../components/site/hooks'
 import { PairedComparison } from '../../components/site/PairedComparison'
 import { PhotoBanner } from '../../components/site/PhotoBanner'
-import { Section, SectionHeading, TextLink, buttonClass } from '../../components/site/ui'
+import { Section, StatementHeading, TextLink, buttonClass } from '../../components/site/ui'
 import { STATS, formatStat } from '../../content/site'
 
 const AUDIT_HREF = '/contact?type=admissions#enquiry'
@@ -31,7 +31,7 @@ const FORCES: readonly Force[] = [
   {
     icon: Funnel,
     title: 'Conversion CRM',
-    body: 'Every enquiry tracked, followed up, and nurtured — no lead lost to a spreadsheet or a busy front desk.',
+    body: 'Every enquiry tracked, followed up, and nurtured. No lead lost to a spreadsheet or a busy front desk.',
   },
   {
     icon: CalendarDays,
@@ -54,7 +54,7 @@ const DIAGNOSIS = [
 const PROTOCOLS = [
   {
     title: 'Weekly Parent Pulse',
-    body: 'Structured communication cadence — progress notes, event invites, and open channels that build trust before admission season.',
+    body: 'Structured communication cadence: progress notes, event invites, and open channels that build trust before admission season.',
   },
   {
     title: 'Alumni & Referral Engine',
@@ -96,10 +96,10 @@ export function Admissions() {
       />
 
       <Section id="flywheel" tone="mist">
-        <SectionHeading
+        <StatementHeading
           label="The enrollment flywheel"
           title="Four forces, spinning all year."
-          lede="Admissions is not a season. It is a system — and each of these four pillars keeps it turning."
+          lede="Admissions is not a season. It is a system, and each of these four pillars keeps it turning."
         />
         <div className="mt-10">
           <Flywheel forces={FORCES} />
@@ -107,7 +107,7 @@ export function Admissions() {
       </Section>
 
       <Section id="diagnosis">
-        <SectionHeading
+        <StatementHeading
           label="Operational gap diagnosis"
           title="Before the audit. After the ecosystem."
           lede="The symptoms we see most often, and what replaces each one once the system is in place."
@@ -124,7 +124,7 @@ export function Admissions() {
       </Section>
 
       <Section id="protocols" tone="sky">
-        <SectionHeading
+        <StatementHeading
           label="Community protocols"
           title="Engagement that compounds."
           lede="Three habits that keep families close all year, so the next admission season starts warm."

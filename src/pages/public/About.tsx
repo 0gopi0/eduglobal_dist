@@ -3,7 +3,7 @@ import { usePageTitle } from '../../components/site/hooks'
 import { PairedComparison } from '../../components/site/PairedComparison'
 import { PhotoBanner } from '../../components/site/PhotoBanner'
 import { Timeline, type Milestone } from '../../components/site/Timeline'
-import { Section, SectionHeading } from '../../components/site/ui'
+import { Section, StatementHeading } from '../../components/site/ui'
 import { VoicesGraph, type Voice } from '../../components/site/VoicesGraph'
 import { STATS, formatStat } from '../../content/site'
 
@@ -36,7 +36,7 @@ const VOICES: readonly Voice[] = [
   {
     icon: GraduationCap,
     title: 'Teachers',
-    body: 'Structured pedagogy training, modern teaching aids, and classrooms designed for inquiry — not just instruction.',
+    body: 'Structured pedagogy training, modern teaching aids, and classrooms designed for inquiry, not just instruction.',
   },
   {
     icon: Users,
@@ -84,17 +84,18 @@ export function About() {
               EduGlobal Innovation Private Limited exists for one reason:
             </strong>{' '}
             schools should not have to choose between academic excellence and operational survival.
-            We bring both — as one ecosystem.
+            We bring both, as one ecosystem.
           </>
         }
         facts={HERO_FACTS}
         action={{ to: '/contact', label: 'Partner with us' }}
+        secondaryAction={{ to: '/franchise', label: 'Franchise Model' }}
         photos={['indiaLab', 'aboutListening', 'aboutReading', 'aboutClassroom']}
         backdrop="aboutEvent"
       />
 
       <Section id="why" tone="mist">
-        <SectionHeading
+        <StatementHeading
           label="Why we exist"
           title="The gap we were built to close."
           lede="Every problem in the traditional school model has an answer in ours. Hover a row to see the old way crossed out."
@@ -109,7 +110,7 @@ export function About() {
       </Section>
 
       <Section id="philosophy" tone="sky">
-        <SectionHeading
+        <StatementHeading
           label="Leadership philosophy"
           title="One community. Four voices. Zero silos."
           lede="A school works when everyone inside it rows in the same direction. Our model connects all four constituencies on a single operating rhythm."
@@ -120,7 +121,7 @@ export function About() {
       </Section>
 
       <Section id="journey" tone="mist">
-        <SectionHeading
+        <StatementHeading
           label="The journey"
           title="Built year by year, school by school."
           lede="From a single partner school in Hyderabad to a network across states, and the road ahead."

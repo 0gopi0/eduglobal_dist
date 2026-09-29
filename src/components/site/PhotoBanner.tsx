@@ -23,6 +23,7 @@ export function PhotoBanner({
   lede,
   facts,
   action,
+  secondaryAction,
   photos,
   backdrop,
 }: {
@@ -33,6 +34,8 @@ export function PhotoBanner({
   /** Up to three short figures under the lede. */
   facts?: readonly BannerFact[]
   action: { to: string; label: string }
+  /** An optional second action, outlined beside the first. */
+  secondaryAction?: { to: string; label: string }
   /** The four photographs of the wall, in reading order. */
   photos: readonly [PhotoKey, PhotoKey, PhotoKey, PhotoKey]
   /** The faint photograph behind the copy. */
@@ -106,20 +109,34 @@ export function PhotoBanner({
               </dl>
             ) : null}
             {/* Outlined rather than filled on phones, like the closing banner's. */}
-            <Link
-              to={action.to}
-              className={buttonClass(
-                'primary',
-                'group mt-8 max-sm:h-11 max-sm:bg-transparent max-sm:px-5 max-sm:text-[0.95rem] max-sm:text-board max-sm:ring-2 max-sm:ring-board max-sm:ring-inset max-sm:hover:bg-board max-sm:hover:text-white',
-                'lg',
-              )}
-            >
-              {action.label}
-              <ArrowRight
-                aria-hidden="true"
-                className="size-[1.15rem] transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </Link>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                to={action.to}
+                className={buttonClass(
+                  'primary',
+                  'group max-sm:h-11 max-sm:bg-transparent max-sm:px-5 max-sm:text-[0.95rem] max-sm:text-board max-sm:ring-2 max-sm:ring-board max-sm:ring-inset max-sm:hover:bg-board max-sm:hover:text-white',
+                  'lg',
+                )}
+              >
+                {action.label}
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-[1.15rem] transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+              {secondaryAction ? (
+                <Link
+                  to={secondaryAction.to}
+                  className={buttonClass('ctaOutline', 'group max-sm:hidden', 'lg')}
+                >
+                  {secondaryAction.label}
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="size-[1.15rem] transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </Link>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

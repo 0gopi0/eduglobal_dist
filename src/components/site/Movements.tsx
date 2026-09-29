@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { MOVEMENTS } from '../../content/site'
 import { cn } from '../../lib/cn'
 import { prefersReducedMotion } from './hooks'
-import { Section } from './ui'
+import { Section, StatementHeading } from './ui'
 
 const LAST = MOVEMENTS.length - 1
 
@@ -84,7 +84,10 @@ function Movements() {
       {MOVEMENTS.map((movement, index) => {
         const done = index <= reached
         return (
-          <li key={movement.numeral} className="relative pb-5 pl-16 last:pb-0 lg:pb-0 lg:pl-0">
+          <li
+            key={movement.numeral}
+            className="group relative pb-5 pl-16 last:pb-0 lg:pb-0 lg:pl-0"
+          >
             {/* The track to the next stop: from this node's edge to the
                 next node's, through the centre of both. On wide screens the
                 nodes sit centred over their cards, so the track starts half
@@ -105,7 +108,8 @@ function Movements() {
 
             <span
               className={cn(
-                'absolute top-0 left-0 grid size-12 place-items-center rounded-full transition-[background-color,color,box-shadow] duration-500 lg:relative lg:mx-auto',
+                'absolute top-0 left-0 grid size-12 place-items-center rounded-full transition-[background-color,color,box-shadow,scale] duration-500 lg:relative lg:mx-auto',
+                'group-hover:bg-pencil-bright group-hover:text-ink group-hover:ring-pencil/50 group-hover:shadow-[0_0_0_6px_rgb(224_160_48/0.25)] group-hover:scale-105 group-hover:duration-300',
                 done
                   ? 'bg-azure text-white shadow-[0_0_0_6px_rgb(0_136_240/0.16)]'
                   : 'bg-paper text-muted ring-1 ring-line ring-inset',
@@ -116,7 +120,8 @@ function Movements() {
 
             <div
               className={cn(
-                'rounded-2xl p-5 ring-1 transition-[background-color,box-shadow] duration-500 ring-inset lg:mt-6 lg:h-[calc(100%-4.5rem)] lg:text-center',
+                'rounded-2xl p-5 ring-1 transition-[background-color,box-shadow,translate] duration-500 ring-inset lg:mt-6 lg:h-[calc(100%-4.5rem)] lg:text-center',
+                'group-hover:bg-pencil-soft group-hover:ring-pencil/45 group-hover:shadow-[0_20px_38px_-24px_rgb(0_16_48/0.35)] group-hover:-translate-y-0.5 group-hover:duration-300',
                 done
                   ? 'bg-paper ring-azure/40 shadow-[0_18px_36px_-24px_rgb(0_16_48/0.35)]'
                   : 'bg-paper/60 ring-line',
@@ -154,18 +159,11 @@ export function MovementsSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_70%_at_15%_0%,rgb(255_255_255/0.8),transparent_70%)]"
       />
-      <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-        <div>
-          <p className="type-label text-leaf">Partnership architecture</p>
-          <h2 className="type-heading mt-3 max-w-[22ch] text-balance">
-            From first audit to full scale — in five movements.
-          </h2>
-        </div>
-        <p className="max-w-[24rem] text-body max-sm:hidden lg:pb-1">
-          One route for every partnership. Each movement builds on the one before it, so nothing
-          launches before it is ready.
-        </p>
-      </header>
+      <StatementHeading
+        label="Partnership architecture"
+        title="From first audit to full scale, in five movements."
+        lede="One route for every partnership. Each movement builds on the one before it, so nothing launches before it is ready."
+      />
       <div className="mt-12 sm:mt-14">
         <Movements />
       </div>
