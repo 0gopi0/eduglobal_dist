@@ -355,6 +355,17 @@
     animation-delay: var(--spark-delay, 0s);
   }
 
+  /* The same spark, shown only while the element is hovered: it fades in
+     and starts circling, then fades out when the pointer leaves. */
+  .spark-border-hover::after {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .spark-border-hover:hover::after {
+    opacity: 1;
+  }
+
   .stat-face {
     transform-origin: 50% 50% calc(var(--face-depth, 1.375rem) * -1);
     backface-visibility: hidden;

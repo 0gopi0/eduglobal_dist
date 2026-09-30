@@ -88,6 +88,11 @@ const PHOTOS = {
     id: '18012456',
     alt: 'Young students in blue uniforms at their desks in a classroom',
   },
+  aboutSmiles: {
+    provider: 'pexels',
+    id: '31447794',
+    alt: 'A group of smiling schoolchildren in checked uniforms and caps',
+  },
   aboutEvent: {
     provider: 'pexels',
     id: '28389321',
@@ -150,28 +155,17 @@ export function photoProps(key: PhotoKey, widths: readonly number[] = [800, 1400
 /* ----------------------------------------------------------------- company */
 
 export const CONTACT = {
-  email: 'support@eduglobalinnovation.in',
-  phone: '123456789',
+  email: 'support@eduglobalinnovations.com',
+  phone: '040 6704 6677',
+  phoneHref: '+914067046677',
   hours: 'Monday – Saturday, 09:30 – 18:30 IST',
 } as const
 
-export const OFFICES = [
-  {
-    city: 'Hyderabad',
-    tag: 'Headquarters',
-    address: '4th Floor, Meridian Towers, Banjara Hills, Hyderabad, Telangana 500034',
-  },
-  {
-    city: 'Bengaluru',
-    tag: 'South Region',
-    address: '2nd Floor, Innovator Block, Koramangala, Bengaluru, Karnataka 560095',
-  },
-  {
-    city: 'Mumbai',
-    tag: 'West Region',
-    address: 'WeWork Enam Sambhav, Bandra Kurla Complex, Mumbai, Maharashtra 400051',
-  },
-] as const
+export const OFFICE = {
+  city: 'Hyderabad',
+  address:
+    '2nd Floor, 8-2-686/B/6/A201, 12th Square, Road No. 12, Banjara Hills, Hyderabad - 500 034 (T.S.)',
+} as const
 
 /* ------------------------------------------------------------- the model */
 
@@ -400,7 +394,7 @@ export function isInquiryType(value: string | null): value is InquiryTypeId {
 
 export const NAV = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
+  { label: 'About Us', href: '/about-us' },
   { label: 'Franchise', href: '/franchise' },
   { label: 'Admissions', href: '/admissions' },
   { label: 'Contact', href: '/contact' },

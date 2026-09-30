@@ -4,7 +4,7 @@ import { EnquiryForm } from '../../components/site/EnquiryForm'
 import { FaqAccordion, type Faq } from '../../components/site/FaqAccordion'
 import { usePageTitle } from '../../components/site/hooks'
 import { Section } from '../../components/site/ui'
-import { CONTACT, OFFICES, isInquiryType, photoProps } from '../../content/site'
+import { CONTACT, OFFICE, isInquiryType, photoProps } from '../../content/site'
 import { formatIndian, projectCampus } from '../../lib/diagnostic'
 
 const FAQS: readonly Faq[] = [
@@ -26,7 +26,7 @@ const FAQS: readonly Faq[] = [
   {
     question: 'What regions do you currently operate in?',
     answer:
-      'We are headquartered in Hyderabad with regional offices in Bengaluru and Mumbai, and we actively partner with institutions across India. Reach out with your location and we will confirm coverage.',
+      'We are based in Hyderabad and actively partner with institutions across India. Reach out with your location and we will confirm coverage.',
   },
   {
     question: 'What investment range does a new franchise campus require?',
@@ -119,7 +119,7 @@ export function Contact() {
                 </li>
                 <li>
                   <a
-                    href={`tel:${CONTACT.phone}`}
+                    href={`tel:${CONTACT.phoneHref}`}
                     className="flex items-center gap-3 text-ink transition-colors hover:text-leaf"
                   >
                     <Phone aria-hidden="true" className="h-5 w-5 shrink-0 text-leaf" />
@@ -133,23 +133,11 @@ export function Contact() {
               </ul>
 
               <div className="mt-8 border-t border-line pt-8">
-                <p className="type-label text-leaf">Regional offices</p>
-                <ul className="mt-5 grid gap-6">
-                  {OFFICES.map((office) => (
-                    <li key={office.city}>
-                      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 font-semibold text-ink">
-                        <MapPin aria-hidden="true" className="h-4 w-4 text-leaf" />
-                        {office.city}
-                        <span className="rounded-full bg-paper px-2.5 py-0.5 text-[0.75rem] font-medium text-leaf ring-1 ring-line ring-inset">
-                          {office.tag}
-                        </span>
-                      </p>
-                      <p className="mt-1.5 pl-6 text-[0.9375rem] leading-relaxed">
-                        {office.address}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
+                <p className="type-label text-leaf">Our office</p>
+                <p className="mt-5 flex items-start gap-3 text-[0.9375rem] leading-relaxed">
+                  <MapPin aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-leaf" />
+                  {OFFICE.address}
+                </p>
               </div>
             </div>
           </aside>

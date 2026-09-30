@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type TouchEvent } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { PILLARS, photoProps } from '../../content/site'
 import { cn } from '../../lib/cn'
@@ -8,11 +8,15 @@ import { TextLink } from './ui'
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
+/** How far a finger must travel sideways before it counts as a swipe. */
+const SWIPE_MIN_PX = 50
+
 /**
  * The four chapters as one card: a row of tabs across the top, then the open
  * chapter's photo beside its copy. Arrow buttons under the copy step through
  * the chapters in order and wrap at either end, so a reader can page through
- * without aiming for the tabs. The tab row scrolls sideways on phones.
+ * without aiming for the tabs. The tab row scrolls sideways on phones, and a
+ * sideways swipe across the chapter itself steps to the next or previous one.
  */
 export function PillarExplorer() {
   const [active, setActive] = useState(0)
@@ -39,12 +43,40 @@ export function PillarExplorer() {
     tabs.current[next]?.focus()
   }
 
-  /** Steps to a neighbouring chapter and keeps its tab in view on phones,
-   *  where the tab row is wider than the screen. */
+  /** Steps to a neighbouring chapter and centres its tab on phones, where the
+   *  tab row is wider than the screen. Only the row scrolls, never the page. */
   function step(delta: number) {
     const next = (active + delta + count) % count
     setActive(next)
-    tabs.current[next]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
+    const tab = tabs.current[next]
+    const row = tab?.parentElement
+    if (!tab || !row) return
+    const tabBox = tab.getBoundingClientRect()
+    const rowBox = row.getBoundingClientRect()
+    row.scrollTo({
+      left: row.scrollLeft + tabBox.left - rowBox.left - (row.clientWidth - tabBox.width) / 2,
+      behavior: 'smooth',
+    })
+  }
+
+  const touchStart = useRef<{ x: number; y: number } | null>(null)
+
+  function onTouchStart(event: TouchEvent<HTMLDivElement>) {
+    const touch = event.touches[0]
+    touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null
+  }
+
+  /** A swipe left opens the next chapter, a swipe right the previous one.
+   *  Mostly vertical movement is left alone, so the page still scrolls. */
+  function onTouchEnd(event: TouchEvent<HTMLDivElement>) {
+    const start = touchStart.current
+    const touch = event.changedTouches[0]
+    touchStart.current = null
+    if (!start || !touch) return
+    const dx = touch.clientX - start.x
+    const dy = touch.clientY - start.y
+    if (Math.abs(dx) < SWIPE_MIN_PX || Math.abs(dx) < Math.abs(dy) * 1.5) return
+    step(dx < 0 ? 1 : -1)
   }
 
   const prev = PILLARS[(active - 1 + count) % count]!
@@ -113,7 +145,11 @@ export function PillarExplorer() {
         })}
       </div>
 
-      <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-12 lg:gap-10 lg:p-8">
+      <div
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        className="grid touch-pan-y gap-6 p-5 sm:p-7 lg:grid-cols-12 lg:gap-10 lg:p-8"
+      >
         {/* Every photo stays mounted so switching chapters cross-fades
             instead of waiting on a download. */}
         <div
@@ -168,6 +204,7 @@ export function PillarExplorer() {
                   )}
                 />
               ))}
+              <span className="ml-2 text-[0.8125rem] text-muted sm:hidden">Swipe</span>
             </div>
             <div className="flex items-center gap-2">
               <button

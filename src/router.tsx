@@ -14,6 +14,7 @@ import { Dashboard } from './pages/admin/Dashboard'
 import { Login } from './pages/admin/Login'
 import { PostList } from './pages/admin/PostList'
 import { About } from './pages/public/About'
+import { Privacy, Terms } from './pages/public/Legal'
 import { Admissions } from './pages/public/Admissions'
 import { BlogList } from './pages/public/BlogList'
 import { BlogPost } from './pages/public/BlogPost'
@@ -77,11 +78,15 @@ const routes: RouteObject[] = [
     element: <SiteLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'about', element: <About /> },
+      { path: 'about-us', element: <About /> },
+      // The page's old address, kept so existing links still land on it.
+      { path: 'about', element: <Navigate to="/about-us" replace /> },
       // Franchise and Contact end in their own enquiry form.
       { path: 'franchise', element: <Franchise />, handle: noFooterCta },
       { path: 'admissions', element: <Admissions /> },
       { path: 'contact', element: <Contact />, handle: noFooterCta },
+      { path: 'terms-and-conditions', element: <Terms /> },
+      { path: 'privacy-policy', element: <Privacy /> },
       { path: 'blog', element: <BlogList /> },
       { path: 'blog/:slug', element: <BlogPost /> },
       { path: '*', element: <NotFound /> },

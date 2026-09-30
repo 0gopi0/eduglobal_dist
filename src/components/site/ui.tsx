@@ -4,7 +4,7 @@ import { cn } from '../../lib/cn'
 
 /* ---------------------------------------------------------------- buttons */
 
-type ButtonVariant = 'accent' | 'primary' | 'secondary' | 'inverse' | 'ctaOutline'
+type ButtonVariant = 'accent' | 'primary' | 'secondary' | 'inverse' | 'ctaOutline' | 'outline'
 
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
   // The inset bottom edge gives the yellow a boundary on white.
@@ -12,6 +12,8 @@ const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
   primary: 'bg-board text-white hover:bg-board-deep',
   secondary: 'bg-paper text-ink ring-1 ring-line ring-inset hover:ring-ink/45',
   inverse: 'text-white ring-1 ring-white/35 ring-inset hover:bg-white/10 hover:ring-white/70',
+  // Transparent on light surfaces, such as the mobile menu.
+  outline: 'bg-transparent text-ink ring-1 ring-ink/30 ring-inset hover:bg-ink/5 hover:ring-ink/60',
 
   // The hero's secondary action. It lifts and tints on hover rather than
   // filling solid, so it never competes with the primary beside it.

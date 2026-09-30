@@ -154,7 +154,7 @@ export function Home() {
           its height as space below it. On phones the section also tucks 2rem
           up into that space, so it is layered above the stats band's ground
           (z-10, later in the page) to keep its label visible. */}
-      <Section id="ecosystem" tone="mist" className="relative z-10 pt-0 max-sm:-mt-8 sm:pt-6">
+      <Section id="ecosystem" tone="mist" className="relative z-10 pt-5 max-sm:-mt-8 sm:pt-6">
         <StatementHeading
           label="The Manifesto"
           title="Four chapters. One operating system for education."

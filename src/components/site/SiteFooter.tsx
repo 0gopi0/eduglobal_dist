@@ -1,9 +1,9 @@
-import { ArrowRight, Clock, Mail, Phone } from 'lucide-react'
-import { useId, useRef, useState, type KeyboardEvent } from 'react'
+import { ArrowRight, Clock, Mail, MapPin, Phone } from 'lucide-react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { CONTACT, OFFICES } from '../../content/site'
+import { CONTACT, OFFICE } from '../../content/site'
 import { cn } from '../../lib/cn'
-import { nextTabIndex, useInView } from './hooks'
+import { useInView } from './hooks'
 import { Logo } from './Logo'
 import { buttonClass } from './ui'
 
@@ -13,64 +13,6 @@ const FOOTER_NAV = [
   { label: 'Admissions & Growth', href: '/admissions' },
   { label: 'Blog', href: '/blog' },
 ] as const
-
-function OfficeTabs() {
-  const [active, setActive] = useState(0)
-  const tabs = useRef<Array<HTMLButtonElement | null>>([])
-  const id = useId()
-  const office = OFFICES[active] ?? OFFICES[0]
-
-  function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
-    const next = nextTabIndex(event.key, index, OFFICES.length)
-    if (next === null) return
-    event.preventDefault()
-    setActive(next)
-    tabs.current[next]?.focus()
-  }
-
-  return (
-    <div className="mt-4">
-      <div role="tablist" aria-label="Offices" className="flex gap-5 border-b border-white/15">
-        {OFFICES.map((entry, index) => {
-          const selected = index === active
-          return (
-            <button
-              key={entry.city}
-              ref={(node) => {
-                tabs.current[index] = node
-              }}
-              type="button"
-              role="tab"
-              id={`${id}-tab-${index}`}
-              aria-selected={selected}
-              aria-controls={`${id}-panel`}
-              tabIndex={selected ? 0 : -1}
-              onClick={() => setActive(index)}
-              onKeyDown={(event) => onKeyDown(event, index)}
-              className={cn(
-                '-mb-px border-b-2 pb-2.5 text-[0.9375rem] font-medium transition-colors',
-                selected
-                  ? 'border-pencil-bright text-white'
-                  : 'border-transparent text-white/55 hover:text-white/85',
-              )}
-            >
-              {entry.city}
-            </button>
-          )
-        })}
-      </div>
-      <div
-        role="tabpanel"
-        id={`${id}-panel`}
-        aria-labelledby={`${id}-tab-${active}`}
-        className="pt-5 text-[0.9375rem] leading-relaxed"
-      >
-        <p className="font-medium text-white">{office.tag}</p>
-        <p className="mt-1 max-w-[30ch]">{office.address}</p>
-      </div>
-    </div>
-  )
-}
 
 /**
  * The page-closing invitation: a blackboard card across the content width.
@@ -183,8 +125,23 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
         </nav>
 
         <div className="lg:col-span-3">
-          <p className="type-label text-white">Offices</p>
-          <OfficeTabs />
+          <p className="type-label text-white">Office</p>
+          <p className="mt-4 flex items-start gap-3 text-[0.9375rem] leading-relaxed">
+            <MapPin className="mt-1 h-4 w-4 shrink-0 text-pencil-bright" />
+            <span className="max-w-[30ch]">{OFFICE.address}</span>
+          </p>
+          <ul className="mt-5 grid gap-2 text-[0.9375rem]">
+            <li>
+              <Link to="/terms-and-conditions" className="transition-colors hover:text-white">
+                Terms &amp; Conditions
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy-policy" className="transition-colors hover:text-white">
+                Privacy Policy
+              </Link>
+            </li>
+          </ul>
         </div>
 
         <div className="lg:col-span-3">
@@ -201,7 +158,7 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
             </li>
             <li>
               <a
-                href={`tel:${CONTACT.phone}`}
+                href={`tel:${CONTACT.phoneHref}`}
                 className="flex items-center gap-3 transition-colors hover:text-white"
               >
                 <Phone className="h-4 w-4 shrink-0 text-pencil-bright" />

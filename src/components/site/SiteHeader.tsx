@@ -230,13 +230,13 @@ export function SiteHeader() {
         <nav aria-label="Main" className="container-site pt-4 pb-10">
           <ul className="divide-y divide-line border-b border-line">
             {NAV.map((item) => (
-              <li key={item.href} className="py-4">
+              <li key={item.href} className="py-3">
                 <NavLink
                   to={item.href}
                   end
                   className={({ isActive }) =>
                     cn(
-                      'block text-[1.75rem] font-bold',
+                      'block text-[1.0625rem] font-semibold',
                       isActive ? 'text-leaf' : 'text-ink',
                     )
                   }
@@ -244,10 +244,10 @@ export function SiteHeader() {
                   {item.label}
                 </NavLink>
                 {item.href === '/' ? (
-                  <ul className="mt-3 grid gap-1 border-l-2 border-line pl-4">
+                  <ul className="mt-2 grid border-l-2 border-line pl-4">
                     {PILLARS.map((pillar) => (
                       <li key={pillar.id}>
-                        <Link to={menuHref(pillar)} className="block py-1.5 text-body">
+                        <Link to={menuHref(pillar)} className="block py-1 text-[0.9375rem] text-body">
                           {pillar.name}
                         </Link>
                       </li>
@@ -258,16 +258,16 @@ export function SiteHeader() {
             ))}
           </ul>
 
-          <Link to="/contact" className={buttonClass('accent', 'mt-8 w-full')}>
+          <Link to="/contact" className={buttonClass('outline', 'mt-6', 'sm')}>
             Partner with us
           </Link>
 
-          <div className="mt-8 grid gap-3 text-[0.9375rem]">
+          <div className="mt-6 grid gap-3 text-[0.9375rem]">
             <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-3 text-body">
               <Mail className="h-4 w-4 text-leaf" />
               {CONTACT.email}
             </a>
-            <a href={`tel:${CONTACT.phone}`} className="flex items-center gap-3 text-body">
+            <a href={`tel:${CONTACT.phoneHref}`} className="flex items-center gap-3 text-body">
               <Phone className="h-4 w-4 text-leaf" />
               {CONTACT.phone}
             </a>
