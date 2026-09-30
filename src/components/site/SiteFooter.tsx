@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowRight, Clock, FileText, Mail, MapPin, Phone, ShieldCheck } from 'lucide-react'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { CONTACT, OFFICE } from '../../content/site'
@@ -130,14 +130,22 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
             <MapPin className="mt-1 h-4 w-4 shrink-0 text-pencil-bright" />
             <span className="max-w-[30ch]">{OFFICE.address}</span>
           </p>
-          <ul className="mt-5 grid gap-2 text-[0.9375rem]">
+          <ul className="mt-5 grid gap-3 text-[0.9375rem]">
             <li>
-              <Link to="/terms-and-conditions" className="transition-colors hover:text-white">
+              <Link
+                to="/terms-and-conditions"
+                className="flex items-center gap-3 transition-colors hover:text-white"
+              >
+                <FileText className="h-4 w-4 shrink-0 text-pencil-bright" />
                 Terms &amp; Conditions
               </Link>
             </li>
             <li>
-              <Link to="/privacy-policy" className="transition-colors hover:text-white">
+              <Link
+                to="/privacy-policy"
+                className="flex items-center gap-3 transition-colors hover:text-white"
+              >
+                <ShieldCheck className="h-4 w-4 shrink-0 text-pencil-bright" />
                 Privacy Policy
               </Link>
             </li>

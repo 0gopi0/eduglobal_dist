@@ -85,6 +85,15 @@ const TEAM: readonly TeamMember[] = [
   },
 ]
 
+/**
+ * A team card. Two to a row on phones, then a fixed width from `sm` up so the
+ * photos stay a modest size. The card is a column so the email, pinned to
+ * its foot, lines up across a row whatever the length of the role. The spark circles the edge on hover, over a
+ * pale blue ring that serves as its track.
+ */
+const TEAM_CARD =
+  'spark-border spark-border-hover relative flex w-[calc((100%-0.75rem)/2)] flex-col overflow-hidden rounded-2xl bg-paper ring-1 ring-line transition-[box-shadow,translate] duration-300 [--spark-color:var(--color-leaf)] [--spark-glow:2px] hover:-translate-y-1 hover:shadow-[0_20px_40px_-26px_rgb(0_16_48/0.45)] hover:ring-leaf/35 sm:w-full sm:max-w-[19rem]'
+
 /** The three figures shown under the banner's lede. */
 const HERO_FACTS = STATS.filter((stat) =>
   ['Partner schools', 'Partner retention', 'Learners impacted'].includes(stat.label),
@@ -176,43 +185,56 @@ export function About() {
             People behind EduGlobal
           </h2>
         </header>
-        {/* Fixed-width cards in a wrapping flex row, so the photos stay a
-            modest size and a card left alone on the last row sits centred. */}
-        <ul className="mt-10 flex flex-wrap justify-center gap-5 text-center">
+        {/* A wrapping flex row, so a card left alone on the last row sits
+            centred. */}
+        <ul className="mt-10 flex flex-wrap justify-center gap-3 text-center sm:gap-5">
           {TEAM.map((member) => (
-            <li
-              key={member.email}
-              className="spark-border spark-border-hover relative w-full max-w-[19rem] overflow-hidden rounded-2xl bg-paper ring-1 ring-line transition-[box-shadow,translate] duration-300 [--spark-color:var(--color-leaf)] [--spark-glow:2px] hover:-translate-y-1 hover:shadow-[0_20px_40px_-26px_rgb(0_16_48/0.45)] hover:ring-leaf/35"
-            >
-              <img
-                src={member.photo}
-                alt={`${member.name}, ${member.role}`}
-                width={720}
-                height={720}
-                loading="lazy"
-                className="aspect-square w-full bg-mist-deep object-cover"
-              />
-              <div className="px-4 py-6">
-                <h3 className="text-[1.1875rem] leading-tight font-bold text-ink">{member.name}</h3>
-                <p className="mt-1 text-[0.9375rem] font-medium text-leaf">{member.role}</p>
+            <li key={member.email} className={TEAM_CARD}>
+              {/* The square is set by this box, not by the image, and the photo
+                  is laid over it: some browsers size an <img> in a flex column
+                  from its own dimensions instead of its aspect ratio. */}
+              <div className="relative aspect-square w-full shrink-0 bg-mist-deep">
+                <img
+                  src={member.photo}
+                  alt={`${member.name}, ${member.role}`}
+                  width={720}
+                  height={720}
+                  loading="lazy"
+                  className="absolute inset-0 size-full object-cover"
+                />
+              </div>
+              <div className="flex flex-1 flex-col px-2 py-4 sm:px-4 sm:py-6">
+                <h3 className="text-[1rem] leading-tight font-bold text-ink sm:text-[1.1875rem]">
+                  {member.name}
+                </h3>
+                <p className="mt-1 mb-3 text-[0.8125rem] leading-snug font-medium text-leaf sm:mb-4 sm:text-[0.9375rem]">
+                  {member.role}
+                </p>
                 <a
                   href={`mailto:${member.email}`}
-                  className="mt-4 flex items-center justify-center gap-2 border-t border-line pt-4 text-[0.875rem] [overflow-wrap:anywhere] text-body transition-colors hover:text-leaf"
+                  className="mt-auto flex items-center justify-center gap-2 border-t border-line pt-3 text-[clamp(0.6875rem,3.1vw,0.75rem)] leading-snug [overflow-wrap:anywhere] text-body transition-colors hover:text-leaf sm:pt-4 sm:text-[0.875rem]"
                 >
-                  <Mail aria-hidden="true" className="size-4 shrink-0 text-leaf" />
-                  {member.email}
+                  <Mail aria-hidden="true" className="size-4 shrink-0 text-leaf max-sm:hidden" />
+                  {/* On phones the card is too narrow for the whole address,
+                      so it may break after the @ rather than mid-word. */}
+                  <span>
+                    {member.email.split('@')[0]}@<wbr />
+                    {member.email.split('@')[1]}
+                  </span>
                 </a>
               </div>
             </li>
           ))}
           {/* The third seat, until the next profile is ready. */}
-          <li className="spark-border spark-border-hover relative w-full max-w-[19rem] overflow-hidden rounded-2xl bg-paper ring-1 ring-line transition-[box-shadow,translate] duration-300 [--spark-color:var(--color-leaf)] [--spark-glow:2px] hover:-translate-y-1 hover:shadow-[0_20px_40px_-26px_rgb(0_16_48/0.45)] hover:ring-leaf/35">
-            <div className="grid aspect-square w-full place-items-center bg-mist-deep text-leaf/40">
-              <UserRound aria-hidden="true" className="size-20" strokeWidth={1.25} />
+          <li className={TEAM_CARD}>
+            <div className="grid aspect-square w-full shrink-0 place-items-center bg-mist-deep text-leaf/40">
+              <UserRound aria-hidden="true" className="size-12 sm:size-20" strokeWidth={1.25} />
             </div>
-            <div className="px-4 py-6">
-              <h3 className="text-[1.1875rem] leading-tight font-bold text-ink">Coming soon</h3>
-              <p className="mt-1 text-[0.9375rem] font-medium text-muted">
+            <div className="px-2 py-4 sm:px-4 sm:py-6">
+              <h3 className="text-[1rem] leading-tight font-bold text-ink sm:text-[1.1875rem]">
+                Coming soon
+              </h3>
+              <p className="mt-1 text-[0.8125rem] leading-snug font-medium text-muted sm:text-[0.9375rem]">
                 A new member of the team will be introduced here.
               </p>
             </div>
