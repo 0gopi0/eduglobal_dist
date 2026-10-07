@@ -152,7 +152,7 @@ function Movements() {
 /** The "five movements" band on the homepage. */
 export function MovementsSection() {
   return (
-    <Section id="partnership" tone="sky" className="relative isolate overflow-hidden">
+    <Section id="partnership" tone="paper" className="relative isolate overflow-hidden">
       {/* A soft pool of light behind the heading, so the band is not a flat
           fill. */}
       <div

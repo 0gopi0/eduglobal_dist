@@ -51,12 +51,24 @@ const VOICES: readonly Voice[] = [
 ]
 
 const MILESTONES: readonly Milestone[] = [
-  { year: '2019', body: 'EduGlobal Innovation founded in Hyderabad with a single partner school.' },
-  { year: '2021', body: 'First franchise-invested campus opens; admissions engine formalised.' },
-  { year: '2023', body: 'Network crosses 20 partner institutions across three states.' },
-  { year: '2025', body: '360° Support platform unifies administrators, teachers, and parents.' },
+  { year: '2026', body: 'EduGlobal Innovation founded in Hyderabad with a single partner school.' },
   {
-    year: '2026',
+    year: '2027',
+    body: 'First franchise-invested campus opens; admissions engine formalised.',
+    planned: true,
+  },
+  {
+    year: '2028',
+    body: 'Network crosses 20 partner institutions across three states.',
+    planned: true,
+  },
+  {
+    year: '2029',
+    body: '360° Support platform unifies administrators, teachers, and parents.',
+    planned: true,
+  },
+  {
+    year: '2030',
     body: 'Roadmap: 100 partner campuses and a national teacher-enablement academy.',
     planned: true,
   },
