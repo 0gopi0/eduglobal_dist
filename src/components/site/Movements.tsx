@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { MOVEMENTS } from '../../content/site'
 import { cn } from '../../lib/cn'
 import { prefersReducedMotion } from './hooks'
@@ -17,12 +17,15 @@ const START_RATIO = 0.35
  * route comes into view, the line runs from stop to stop and each one lights up in
  * bright blue, its icon turning white, as the line reaches it, with its card
  * brightening to match:
- * across the page on wide screens, down it on phones.
+ * across the page on wide screens, down it on phones. Pointing at a movement
+ * paints it amber; on touch screens, where there is no pointer, a tap holds
+ * that same highlight on the movement until it is dismissed.
  */
 function Movements() {
   const listRef = useRef<HTMLOListElement>(null)
   const segments = useRef<Array<HTMLSpanElement | null>>([])
   const [reached, setReached] = useState(-1)
+  const [tapped, setTapped] = useState<number | null>(null)
 
   // Every time the route comes into view, the line runs from the first stop
   // to the last over FILL_MS, lighting each stop as it arrives. Once the
@@ -79,13 +82,33 @@ function Movements() {
     }
   }, [])
 
+  // A touch anywhere off the route lets the tapped highlight go, the way
+  // moving the pointer away does on wide screens.
+  useEffect(() => {
+    function release(event: Event) {
+      if (!listRef.current?.contains(event.target as Node)) setTapped(null)
+    }
+    document.addEventListener('pointerdown', release)
+    return () => document.removeEventListener('pointerdown', release)
+  }, [])
+
+  /** A tap on a touch screen holds the amber highlight on a movement, the
+   *  same one pointing paints on hover-capable screens. Tapping the same
+   *  movement again lets it go; tapping another moves it there. */
+  function onPointerUp(event: PointerEvent<HTMLLIElement>, index: number) {
+    if (event.pointerType === 'mouse') return
+    setTapped((current) => (current === index ? null : index))
+  }
+
   return (
     <ol ref={listRef} className="grid lg:grid-cols-5 lg:gap-4">
       {MOVEMENTS.map((movement, index) => {
         const done = index <= reached
+        const lit = tapped === index
         return (
           <li
             key={movement.numeral}
+            onPointerUp={(event) => onPointerUp(event, index)}
             className="group relative pb-5 pl-16 last:pb-0 lg:pb-0 lg:pl-0"
           >
             {/* The track to the next stop: from this node's edge to the
@@ -108,11 +131,16 @@ function Movements() {
 
             <span
               className={cn(
-                'absolute top-0 left-0 grid size-12 place-items-center rounded-full transition-[background-color,color,box-shadow,scale] duration-500 lg:relative lg:mx-auto',
+                'absolute top-0 left-0 grid size-12 place-items-center rounded-full transition-[background-color,color,box-shadow,scale] lg:relative lg:mx-auto',
                 'group-hover:bg-pencil-bright group-hover:text-ink group-hover:ring-pencil/50 group-hover:shadow-[0_0_0_6px_rgb(224_160_48/0.25)] group-hover:scale-105 group-hover:duration-300',
-                done
-                  ? 'bg-azure text-white shadow-[0_0_0_6px_rgb(0_136_240/0.16)]'
-                  : 'bg-paper text-muted ring-1 ring-line ring-inset',
+                lit
+                  ? cn(
+                      'bg-pencil-bright text-ink ring-pencil/50 shadow-[0_0_0_6px_rgb(224_160_48/0.25)] scale-105 duration-300',
+                      !done && 'ring-1 ring-inset',
+                    )
+                  : done
+                    ? 'bg-azure text-white shadow-[0_0_0_6px_rgb(0_136_240/0.16)] duration-500'
+                    : 'bg-paper text-muted ring-1 ring-line ring-inset duration-500',
               )}
             >
               <movement.icon aria-hidden="true" className="size-5" strokeWidth={2.2} />
@@ -120,11 +148,13 @@ function Movements() {
 
             <div
               className={cn(
-                'rounded-2xl p-5 ring-1 transition-[background-color,box-shadow,translate] duration-500 ring-inset lg:mt-6 lg:h-[calc(100%-4.5rem)] lg:text-center',
+                'rounded-2xl p-5 ring-1 transition-[background-color,box-shadow,translate] ring-inset lg:mt-6 lg:h-[calc(100%-4.5rem)] lg:text-center',
                 'group-hover:bg-pencil-soft group-hover:ring-pencil/45 group-hover:shadow-[0_20px_38px_-24px_rgb(0_16_48/0.35)] group-hover:-translate-y-0.5 group-hover:duration-300',
-                done
-                  ? 'bg-paper ring-azure/40 shadow-[0_18px_36px_-24px_rgb(0_16_48/0.35)]'
-                  : 'bg-paper/60 ring-line',
+                lit
+                  ? 'bg-pencil-soft ring-pencil/45 shadow-[0_20px_38px_-24px_rgb(0_16_48/0.35)] -translate-y-0.5 duration-300'
+                  : done
+                    ? 'bg-paper ring-azure/40 shadow-[0_18px_36px_-24px_rgb(0_16_48/0.35)] duration-500'
+                    : 'bg-paper/60 ring-line duration-500',
               )}
             >
               <p
