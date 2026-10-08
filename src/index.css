@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+/* Tailwind v4 limits hover styles to devices with a mouse. Drop that limit
+   so a tap on a phone shows the same card effects; the effect stays until
+   the visitor taps somewhere else. */
+@custom-variant hover (&:hover);
+
 /* Design tokens. Tailwind v4 is CSS-first: these variables generate the
    matching utilities (bg-brand-600, text-ink, ...), so each palette can be
    rethemed from this one block. */

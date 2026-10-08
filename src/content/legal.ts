@@ -24,7 +24,7 @@ export interface LegalDocument {
 }
 
 const COMPANY = 'EduGlobal Innovation Private Limited'
-const SITE = 'eduglobalinnovations.com'
+const SITE = 'eduglobalinnovation.com'
 
 export const TERMS: LegalDocument = {
   title: 'Terms & Conditions',

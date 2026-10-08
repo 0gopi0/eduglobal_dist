@@ -86,13 +86,13 @@ const TEAM: readonly TeamMember[] = [
   {
     name: 'Rajesh',
     role: 'Business Head',
-    email: 'rajesh@eduglobalinnovations.com',
+    email: 'rajesh@eduglobalinnovation.com',
     photo: '/team/rajesh.jpg',
   },
   {
     name: 'Priyanka',
     role: 'Head of Product Management',
-    email: 'priyanka@eduglobalinnovations.com',
+    email: 'priyanka@eduglobalinnovation.com',
     photo: '/team/priyanka.jpg',
   },
 ]

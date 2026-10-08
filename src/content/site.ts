@@ -155,7 +155,7 @@ export function photoProps(key: PhotoKey, widths: readonly number[] = [800, 1400
 /* ----------------------------------------------------------------- company */
 
 export const CONTACT = {
-  email: 'support@eduglobalinnovations.com',
+  email: 'support@eduglobalinnovation.com',
   phone: '040 6704 6677',
   phoneHref: '+914067046677',
   hours: 'Monday – Saturday, 09:30 – 18:30 IST',
