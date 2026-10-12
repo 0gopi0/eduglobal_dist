@@ -26,7 +26,7 @@ export function Logo({
         alt="EduGlobal Innovations"
         width={1228}
         height={453}
-        className={cn('w-auto', inverse ? 'h-11' : 'h-10 sm:h-11')}
+        className={cn('w-auto', inverse ? 'h-14' : 'h-12 sm:h-14')}
       />
     </span>
   )
