@@ -66,6 +66,7 @@
   --animate-fade-in: fade-in 0.7s ease-out both;
   --animate-line-rise: line-rise 14s linear infinite;
   --animate-gloss-drift: gloss-drift 16s ease-in-out infinite alternate;
+  --animate-card-float: card-float 7s ease-in-out infinite;
   --animate-wave-drift: wave-drift 24s linear infinite;
   /* The highlights band reuses the same one-tile slide. Its track holds four
      copies, so each loop covers two of them. */
@@ -152,6 +153,19 @@
   }
   to {
     transform: translate3d(3%, 0, 0);
+  }
+}
+
+/* Gentle float for the hero form card: rises and settles a few pixels on a
+   slow loop, with a matching soft shadow pulse. Respects reduced motion via
+   the motion-safe: variant at the usage site. */
+@keyframes card-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
   }
 }
 

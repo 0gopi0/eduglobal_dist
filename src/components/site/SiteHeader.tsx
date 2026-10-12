@@ -117,7 +117,7 @@ export function SiteHeader() {
         )}
       >
         <div className="container-site flex h-[4.5rem] items-center justify-between gap-6">
-          <Link to="/" aria-label="EduGlobal Innovation home" className="rounded-lg">
+          <Link to="/" aria-label="EduGlobal Innovations home" className="rounded-lg">
             <Logo />
           </Link>
 

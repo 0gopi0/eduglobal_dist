@@ -1,8 +1,13 @@
+# SMTP config for contact.php must never be served (see docs/EMAIL_SETUP.md)
+<FilesMatch "^(config\.mail.*\.php|eduglobal-mail\.config\.php)$">
+  Require all denied
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  # Never rewrite API calls or uploaded files to index.html
-  RewriteCond %{REQUEST_URI} ^/(api|uploads)(/|$) [NC]
+  # Never rewrite API calls, uploaded files or the enquiry mail relay to index.html
+  RewriteCond %{REQUEST_URI} ^/(api|uploads|contact\.php)(/|$) [NC]
   RewriteRule ^ - [L]
   # React SPA routing
   RewriteRule ^index\.html$ - [L]

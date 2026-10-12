@@ -155,7 +155,7 @@ export function photoProps(key: PhotoKey, widths: readonly number[] = [800, 1400
 /* ----------------------------------------------------------------- company */
 
 export const CONTACT = {
-  email: 'support@eduglobalinnovation.com',
+  email: 'support@eduglobalinnovations.com',
   phone: '040 6704 6677',
   phoneHref: '+914067046677',
   hours: 'Monday – Saturday, 09:30 – 18:30 IST',
@@ -164,7 +164,7 @@ export const CONTACT = {
 export const OFFICE = {
   city: 'Hyderabad',
   address:
-    '2nd Floor, 8-2-686/B/6/A201, 12th Square, Road No. 12, Banjara Hills, Hyderabad - 500 034 (T.S.)',
+    'WorkFlo Hitex, 4th Floor, Unit Nos. 405-411, Bizness Square 2, H.No. 1-98/3/5/23 to 27, Jubilee Enclave, Sy. Nos. 66 & 67, Madhapur, Serilingampally Mandal, R.R. District, Hyderabad, Telangana - 500081',
 } as const
 
 /* ------------------------------------------------------------- the model */

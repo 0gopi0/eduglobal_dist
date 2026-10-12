@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CalculatorSection } from '../../components/site/CampusCalculator'
+import { HeroEnquiryForm } from '../../components/site/HeroEnquiryForm'
 import { usePageTitle } from '../../components/site/hooks'
 import { MovementsSection } from '../../components/site/Movements'
 import { PillarExplorer } from '../../components/site/PillarExplorer'
@@ -108,8 +109,10 @@ export function Home() {
       {/* ---------------------------------------------------------------- hero */}
       <section className="relative isolate overflow-hidden bg-paper">
         <HeroVideo />
-        <div className="container-site flex min-h-[min(42rem,calc(100svh-5rem))] items-center pt-16 pb-24 sm:pt-20 sm:pb-28 lg:min-h-[min(38rem,calc(100svh-6rem))] lg:pt-16 lg:pb-32">
-          <div className="max-w-[34rem]">
+        {/* Copy left, callback card right from `lg`; below that the card
+            stacks under the buttons. */}
+        <div className="container-site grid min-h-[min(42rem,calc(100svh-5rem))] content-center gap-10 pt-16 pb-24 sm:pt-20 sm:pb-28 lg:min-h-[min(38rem,calc(100svh-6rem))] lg:grid-cols-12 lg:items-center lg:gap-8 lg:pt-12 lg:pb-28">
+          <div className="max-w-[34rem] lg:col-span-7">
             <p
               className="inline-flex items-center gap-2 rounded-full bg-paper/80 py-1.5 pr-3.5 pl-2.5 text-[0.8125rem] font-semibold text-board ring-1 ring-line backdrop-blur-sm motion-safe:animate-fade-in"
             >
@@ -144,6 +147,9 @@ export function Home() {
               </div>
             </div>
           </div>
+          <HeroEnquiryForm
+            className="motion-safe:animate-fade-in lg:col-span-5 lg:justify-self-end"
+          />
         </div>
       </section>
 

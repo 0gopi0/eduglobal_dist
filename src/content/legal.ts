@@ -23,8 +23,8 @@ export interface LegalDocument {
   sections: readonly LegalSection[]
 }
 
-const COMPANY = 'EduGlobal Innovation Private Limited'
-const SITE = 'eduglobalinnovation.com'
+const COMPANY = 'EduGlobal Innovations Private Limited'
+const SITE = 'eduglobalinnovations.com'
 
 export const TERMS: LegalDocument = {
   title: 'Terms & Conditions',

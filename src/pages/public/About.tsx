@@ -51,7 +51,7 @@ const VOICES: readonly Voice[] = [
 ]
 
 const MILESTONES: readonly Milestone[] = [
-  { year: '2026', body: 'EduGlobal Innovation founded in Hyderabad with a single partner school.' },
+  { year: '2026', body: 'EduGlobal Innovations founded in Hyderabad with a single partner school.' },
   {
     year: '2027',
     body: 'First franchise-invested campus opens; admissions engine formalised.',
@@ -86,13 +86,13 @@ const TEAM: readonly TeamMember[] = [
   {
     name: 'Rajesh',
     role: 'Business Head',
-    email: 'rajesh@eduglobalinnovation.com',
+    email: 'rajesh@eduglobalinnovations.com',
     photo: '/team/rajesh.jpg',
   },
   {
     name: 'Priyanka',
     role: 'Head of Product Management',
-    email: 'priyanka@eduglobalinnovation.com',
+    email: 'priyanka@eduglobalinnovations.com',
     photo: '/team/priyanka.jpg',
   },
 ]
@@ -125,7 +125,7 @@ export function About() {
         lede={
           <>
             <strong className="font-semibold text-ink">
-              EduGlobal Innovation Private Limited exists for one reason:
+              EduGlobal Innovations Private Limited exists for one reason:
             </strong>{' '}
             schools should not have to choose between academic excellence and operational survival.
             We bring both, as one ecosystem.

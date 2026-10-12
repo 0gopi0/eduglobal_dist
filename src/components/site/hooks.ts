@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react'
 
-const SITE_NAME = 'EduGlobal Innovation'
+const SITE_NAME = 'EduGlobal Innovations'
 
 /** Sets the document title for a public page. */
 export function usePageTitle(title?: string) {

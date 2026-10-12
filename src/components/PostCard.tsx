@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { formatDate } from '../lib/format'
 import type { PostSummary } from '../types'
-import { LogoMark } from './site/Logo'
 import { TextLink } from './site/ui'
 import { StatusBadge } from './ui/Badge'
 
@@ -32,7 +31,11 @@ export function PostCard({
           />
         ) : (
           <span className="flex h-full items-center justify-center">
-            <LogoMark className="h-10 w-10 opacity-30" />
+            <img
+              src="/brand/logo-full.png"
+              alt=""
+              className="h-12 w-auto opacity-25 mix-blend-multiply"
+            />
           </span>
         )}
       </Link>

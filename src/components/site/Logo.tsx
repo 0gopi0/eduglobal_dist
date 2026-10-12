@@ -1,12 +1,12 @@
 import { cn } from '../../lib/cn'
 
 /**
- * The brand emblem: the EG monogram around a globe, with a graduation cap and
- * a rising arrow. It is cut from the full logo with a transparent ground; on
- * dark surfaces it sits on a white tile, because a few enclosed parts of the
- * artwork are white.
+ * The full brand lockup: the EG globe emblem with the EduGlobal Innovations
+ * name and tagline. The name is part of the artwork, so no text is set beside
+ * it. The image has an opaque white ground; on dark surfaces it sits on a
+ * white tile so it doesn't read as a bare white box.
  */
-export function LogoMark({
+export function Logo({
   inverse = false,
   className,
 }: {
@@ -16,50 +16,18 @@ export function LogoMark({
   return (
     <span
       className={cn(
-        'grid shrink-0 place-items-center',
-        inverse && 'rounded-xl bg-white p-1',
+        'inline-flex shrink-0 items-center',
+        inverse && 'rounded-xl bg-white p-2',
         className,
       )}
     >
-      <img src="/brand/logo-mark.png" alt="" className="h-full w-full object-contain" />
-    </span>
-  )
-}
-
-/**
- * The emblem beside the name. The mark can be left off where the name
- * should stand alone.
- */
-export function Logo({
-  inverse = false,
-  mark = true,
-  className,
-}: {
-  inverse?: boolean
-  mark?: boolean
-  className?: string
-}) {
-  return (
-    <span className={cn('flex items-center', mark && 'gap-3', className)}>
-      {mark ? <LogoMark inverse={inverse} className="size-11" /> : null}
-      <span className="flex flex-col leading-none">
-        <span
-          className={cn(
-            'text-[1.1875rem] font-extrabold tracking-[0.01em]',
-            inverse ? 'text-white' : 'text-ink',
-          )}
-        >
-          EDUGLOBAL
-        </span>
-        <span
-          className={cn(
-            'mt-1 text-[0.6875rem] font-medium tracking-[0.02em]',
-            inverse ? 'text-white/60' : 'text-muted',
-          )}
-        >
-          Innovation Pvt. Ltd.
-        </span>
-      </span>
+      <img
+        src="/brand/logo-full.png"
+        alt="EduGlobal Innovations"
+        width={836}
+        height={298}
+        className={cn('w-auto', inverse ? 'h-12' : 'h-11')}
+      />
     </span>
   )
 }
