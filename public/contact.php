@@ -1,15 +1,17 @@
 <?php
 /**
- * Enquiry mail relay for the static site (Hostinger, Apache + PHP).
+ * Enquiry mail relay for the static site (any Apache + PHP host).
  *
  * Browsers cannot speak SMTP, and anything shipped in the JS bundle is public,
  * so the two site forms POST JSON here and this script sends the email using
  * SMTP credentials that live only on the server.
  *
+ * Works with Google Workspace (GSuite) / Gmail via smtp.gmail.com + App Password.
+ *
  * Config is loaded from (first match wins):
  *   1. ../eduglobal-mail.config.php   one level ABOVE the web root (preferred)
  *   2. ./config.mail.php              next to this file (gitignored, denied by .htaccess)
- * See server/config.mail.example.php and docs/EMAIL_SETUP.md.
+ * See server/config.mail.example.php and docs/EMAIL_SETUP_GSUITE.md.
  */
 
 declare(strict_types=1);
